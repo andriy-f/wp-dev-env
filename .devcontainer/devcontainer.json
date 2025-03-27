@@ -9,8 +9,7 @@
 	// "features": {},
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
 	"forwardPorts": [
-		// "8081:8080",
-		// 8080,
+		8082,
 		"adminer:8080"
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.

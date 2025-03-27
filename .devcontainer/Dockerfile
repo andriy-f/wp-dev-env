@@ -1,7 +1,5 @@
 FROM mcr.microsoft.com/devcontainers/php:7.4
 
-# Install MariaDB client
-
 RUN apt-get update; export DEBIAN_FRONTEND=noninteractive \
 	&& apt-get install -y --no-install-recommends \
 	mariadb-client \
@@ -20,11 +18,6 @@ RUN docker-php-ext-configure gd \
 	--with-freetype \
 	--with-jpeg \
 	--with-webp
-
-# RUN	docker-php-ext-install \
-# 	mysqli \
-# 	pdo \
-# 	pdo_mysql
 
 RUN	docker-php-ext-install -j "$(nproc)" \
 	bcmath \
@@ -60,6 +53,9 @@ RUN { \
 	echo 'ignore_repeated_source = Off'; \
 	echo 'html_errors = Off'; \
 	} > /usr/local/etc/php/conf.d/error-logging.ini
+
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY ports.conf /etc/apache2/ports.conf
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
