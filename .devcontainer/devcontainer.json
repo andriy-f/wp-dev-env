@@ -13,8 +13,7 @@
 		"adminer:8080"
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
-	"postCreateCommand": "sudo chmod a+x \"$(pwd)/www\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)/www\" /var/www/html",
+	"postCreateCommand": "gzip /usr/local/etc/php/conf.d/xdebug.ini; chmod a+x \"$(pwd)/www\" && rm -rf /var/www/html && ln -s \"$(pwd)/www\" /var/www/html",
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -23,7 +22,8 @@
 			"extensions": [
 				"streetsidesoftware.code-spell-checker",
 				"GitHub.copilot",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"xdebug.php-debug"
 			]
 		}
 	},
