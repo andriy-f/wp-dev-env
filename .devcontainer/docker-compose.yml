@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build:
@@ -7,42 +5,12 @@ services:
       dockerfile: Dockerfile
 
     volumes:
-      # - ../..:/workspaces:cached
       - ..:/workspaces/wp-dev-env:cached
-
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
-
     # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
     # network_mode: service:db
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
     # (Adding the "ports" property to this file will not forward from a Codespace.)
     networks:
       - backnet
-
-  db:
-    image: mariadb:11
-    restart: unless-stopped
-    volumes:
-      - mariadb-data:/var/lib/mysql
-    env_file:
-      - db.env
-    ports:
-      - "8081:8080"
-    networks:
-      - backnet
-  # Add "forwardPorts": ["3306"] to **devcontainer.json** to forward MariaDB locally.
-  # (Adding the "ports" property to this file will not forward from a Codespace.)
-
-  adminer:
-    image: adminer
-    restart: unless-stopped
-    networks:
-      - backnet
-
-volumes:
-  mariadb-data:
-
-
-networks:
-  backnet:

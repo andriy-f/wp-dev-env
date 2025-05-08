@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .devcontainer
+      dockerfile: Dockerfile
+    volumes:
+      - $PWD/www:/var/www/html
+    networks:
+      - backnet
+      - reverse-proxied
+
+  db:
+    image: mariadb:11
+    restart: unless-stopped
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    env_file:
+      - .devcontainer/db.env
+    networks:
+      - backnet
+
+  adminer:
+    image: adminer:5
+    restart: unless-stopped
+    networks:
+      - backnet
+      - reverse-proxied
+
+volumes:
+  mariadb-data:
+
+
+networks:
+  backnet:
+  reverse-proxied:
+    external: true

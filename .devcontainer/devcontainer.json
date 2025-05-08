@@ -9,11 +9,13 @@
 	// "features": {},
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
 	"forwardPorts": [
-		8082,
-		"adminer:8080"
+		// 8082,
+		// "adminer:8080"
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "gzip /usr/local/etc/php/conf.d/xdebug.ini; chmod a+x \"$(pwd)/www\" && rm -rf /var/www/html && ln -s \"$(pwd)/www\" /var/www/html",
+	// "postCreateCommand": "gzip /usr/local/etc/php/conf.d/xdebug.ini; chmod a+x \"$(pwd)/www\" && rm -rf /var/www/html && ln -s \"$(pwd)/www\" /var/www/html",
+	// "postCreateCommand": "chmod a+x \"$(pwd)/www\" && rm -rf /var/www/html && ln -s \"$(pwd)/www\" /var/www/html",
+	// "postCreateCommand": "ln -s \"$(pwd)/www\" /var/www/html",
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
