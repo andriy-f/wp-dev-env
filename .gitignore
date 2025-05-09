@@ -1,4 +1,3 @@
-/www
-!/www/.gitkeep
-/.devcontainer/db.env
+/db.env
 /3rdparty
+/www
