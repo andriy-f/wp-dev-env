@@ -16,6 +16,9 @@ services:
       - mariadb-data:/var/lib/mysql
     env_file:
       - $PWD/db.env
+    secrets:
+      - mysql_root_password
+      - mysql_haribol_password
     networks:
       - backnet
 
@@ -29,6 +32,12 @@ services:
 volumes:
   mariadb-data:
 
+
+secrets:
+  mysql_root_password:
+    file: $PWD/secrets/mysql_root_password
+  mysql_haribol_password:
+    file: $PWD/secrets/mysql_haribol_password
 
 networks:
   backnet:
