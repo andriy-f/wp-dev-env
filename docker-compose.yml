@@ -1,5 +1,5 @@
 services:
-  app:
+  wordpress:
     build:
       context: .devcontainer
       dockerfile: Dockerfile
