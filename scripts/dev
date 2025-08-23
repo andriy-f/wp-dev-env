@@ -1,0 +1,6 @@
+#!/bin/sh
+
+podman-compose pull \
+&& podman-compose build --pull \
+&& podman-compose up;
+podman-compose down;
