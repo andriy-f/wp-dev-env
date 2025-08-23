@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - $PWD/www:/var/www/html
+      - $PWD/wordpress/config/maildev.ini:/usr/local/etc/php/conf.d/maildev.ini
     userns_mode: "keep-id:uid=33,gid=33"
     user: "root"
     networks:
@@ -27,6 +28,14 @@ services:
   adminer:
     image: adminer:5
     restart: unless-stopped
+    networks:
+      - backnet
+      - reverse-proxied
+
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
     networks:
       - backnet
       - reverse-proxied
