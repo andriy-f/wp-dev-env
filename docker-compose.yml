@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - $PWD/www:/var/www/html
+    userns_mode: "keep-id:uid=33,gid=33"
+    user: "root"
     networks:
       - backnet
       - reverse-proxied
