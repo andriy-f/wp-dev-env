@@ -13,10 +13,10 @@ services:
       - reverse-proxied
 
   db:
-    image: mariadb:11
+    image: mysql:8
     restart: unless-stopped
     volumes:
-      - mariadb-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     env_file:
       - $PWD/db.env
     secrets:
@@ -41,7 +41,7 @@ services:
       - reverse-proxied
 
 volumes:
-  mariadb-data:
+  mysql-data:
 
 
 secrets:
