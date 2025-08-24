@@ -16,6 +16,7 @@ define('FS_METHOD', 'direct');
 Add those to `wp-config.php`.
 
 ```php
-if( strpos( $_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false )
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
   $_SERVER['HTTPS'] = 'on';
+}
 ```
