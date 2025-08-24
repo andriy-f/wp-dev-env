@@ -1,8 +1,6 @@
 services:
   wordpress:
-    build:
-      context: .devcontainer
-      dockerfile: Dockerfile
+    build: ./wordpress
     volumes:
       - $PWD/www:/var/www/html
       - $PWD/wordpress/config/maildev.ini:/usr/local/etc/php/conf.d/maildev.ini
