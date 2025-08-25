@@ -19,6 +19,7 @@
 				"streetsidesoftware.code-spell-checker",
 				"GitHub.copilot",
 				"ms-azuretools.vscode-docker",
+				"matthewpi.caddyfile-support",
 				"xdebug.php-debug"
 			]
 		}
