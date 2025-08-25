@@ -9,8 +9,8 @@ wordpress.gopala.localhost {
 	reverse_proxy wordpress
 }
 
-maildev.gopala.localhost {
-	reverse_proxy maildev:1080
+smtp.gopala.localhost {
+	reverse_proxy smtp:1080
 }
 
 adminer.gopala.localhost {
