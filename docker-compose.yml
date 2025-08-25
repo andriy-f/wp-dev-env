@@ -4,6 +4,7 @@ services:
     volumes:
       - $PWD/www:/var/www/html
       - $PWD/wordpress/config/maildev.ini:/usr/local/etc/php/conf.d/maildev.ini
+      - $PWD/wordpress/config/msmtprc:/usr/local/etc/msmtprc
     userns_mode: "keep-id:uid=33,gid=33"
     user: "root"
     networks:
@@ -56,6 +57,7 @@ volumes:
   mysql-data:
   caddy_data:
   caddy_config:
+
 
 secrets:
   localhost.crt:
