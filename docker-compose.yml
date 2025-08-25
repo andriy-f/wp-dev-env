@@ -32,17 +32,36 @@ services:
 
   maildev:
     image: maildev/maildev
-    ports:
-      - "1080:1080"
     networks:
       - backnet
       - reverse-proxied
 
+  reverse-proxy:
+    image: caddy:2
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - $PWD/reverse-proxy/conf/Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "8443:8443/udp"
+    networks:
+      - reverse-proxied
+    secrets:
+      - localhost.crt
+      - localhost.key
+
 volumes:
   mysql-data:
-
+  caddy_data:
+  caddy_config:
 
 secrets:
+  localhost.crt:
+    external: true
+  localhost.key:
+    external: true
   mysql_root_password:
     file: $PWD/secrets/mysql_root_password
   mysql_haribol_password:
@@ -51,4 +70,3 @@ secrets:
 networks:
   backnet:
   reverse-proxied:
-    external: true

@@ -1,0 +1,18 @@
+{
+	http_port 8080
+	# https_port 8443
+	auto_https off
+}
+
+wordpress.gopala.localhost {
+	# tls /run/secrets/localhost.crt /run/secrets/localhost.key
+	reverse_proxy wordpress
+}
+
+maildev.gopala.localhost {
+	reverse_proxy maildev:1080
+}
+
+adminer.gopala.localhost {
+	reverse_proxy adminer:8080
+}
