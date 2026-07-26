@@ -11,6 +11,8 @@ RUN cd ~/ \
 	&& mv wp-cli.phar /usr/local/bin/wp \
 	&& chmod +x /usr/local/bin/wp
 
+# Apache headers
+RUN a2enmod headers
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
 

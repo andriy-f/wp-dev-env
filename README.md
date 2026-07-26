@@ -37,6 +37,18 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 }
 ```
 
+## Font issues
+
+modify .htaccess
+
+```xml
+<FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
+```
+
 **wp-cli**
 
 ```sh
