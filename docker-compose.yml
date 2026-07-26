@@ -2,9 +2,9 @@ services:
   wordpress:
     build: ./wordpress
     volumes:
-      - $PWD/www:/var/www/html
-      - $PWD/wordpress/config/maildev.ini:/usr/local/etc/php/conf.d/maildev.ini
-      - $PWD/wordpress/config/msmtprc:/usr/local/etc/msmtprc
+      - $PWD/www:/var/www/html:z
+      - $PWD/wordpress/config/maildev.ini:/usr/local/etc/php/conf.d/maildev.ini:z
+      - $PWD/wordpress/config/msmtprc:/usr/local/etc/msmtprc:z
     userns_mode: "keep-id:uid=33,gid=33"
     user: "root"
     networks:
@@ -32,7 +32,7 @@ services:
       - reverse-proxied
 
   smtp:
-    image: maildev/maildev
+    image: maildev/maildev:2.2.1
     networks:
       - backnet
       - reverse-proxied
@@ -42,7 +42,7 @@ services:
     volumes:
       - caddy_data:/data
       - caddy_config:/config
-      - $PWD/reverse-proxy/conf/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/reverse-proxy/conf/Caddyfile:/etc/caddy/Caddyfile:z
     ports:
       - "8080:8080"
       - "8443:8443"
@@ -58,17 +58,21 @@ volumes:
   caddy_data:
   caddy_config:
 
-
 secrets:
   localhost.crt:
     external: true
   localhost.key:
     external: true
   mysql_root_password:
+    x-podman.relabel: z
     file: $PWD/secrets/mysql_root_password
   mysql_haribol_password:
+    x-podman.relabel: z
     file: $PWD/secrets/mysql_haribol_password
 
 networks:
   backnet:
   reverse-proxied:
+
+x-podman:
+  in_pod: false
