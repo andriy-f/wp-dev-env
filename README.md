@@ -39,6 +39,13 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 
 ## Font issues
 
+### Problem after wordpress with Divi theme migrated to new domain (or restored), 
+
+Divi itself caches font internally using old domain inside html @font-face. To make it use new domain, re-upload same font with same name
+
+    Source: <https://divi.help/threads/destroyed-custom-font-after-moving-to-new-domain.7839/>
+
+### other font issues (maybe not needed)
 modify .htaccess
 
 ```xml
@@ -49,8 +56,15 @@ modify .htaccess
 </FilesMatch>
 ```
 
-**wp-cli**
 
+
+## wp-cli
+
+1. Run as www-data
+```sh
+podman-compose exec -u www-data wordpress bash
+docker compose exec -u www-data wordpress bash
+```
 ```sh
 su -c "wp --info" -s /bin/bash www-data
 ```
